@@ -62,15 +62,15 @@ void MoveForward(int duration)
 void MoveBackward(int duration)
 {
     // Move both motors forward
-    digitalWrite(LeftMotorBackward, HIGH);
-    digitalWrite(RightMotorBackward, HIGH);
+    analogWrite(LeftMotorBackward, 255);
+    analogWrite(RightMotorBackward, 255);
 
     // Wait for the specified duration
     delay(duration);
 
     // Stop both motors
-    digitalWrite(LeftMotorBackward, LOW);
-    digitalWrite(RightMotorBackward, LOW);
+    analogWrite(LeftMotorBackward, 0);
+    analogWrite(RightMotorBackward, 0);
 }
 
 void TurnLeft(int duration)
