@@ -37,32 +37,12 @@ void setup()
 
 void loop()
 {
-    Serial.println("Left Motor A Forward");
-    digitalWrite(LeftMotorForward, HIGH);
-    delay(1000);
-    digitalWrite(LeftMotorForward, LOW);
-    delay(500);
-
-    Serial.println("Left Motor A Backward");
-    digitalWrite(LeftMotorBackward, HIGH);
-    delay(1000);
-    digitalWrite(LeftMotorBackward, LOW);
-    delay(500);
-
-    Serial.println("Right Motor A Forward");
-    digitalWrite(RightMotorForward, HIGH);
-    delay(1000);
-    digitalWrite(RightMotorForward, LOW);
-    delay(500);
-
-    Serial.println("Right Motor A Backward");
-    digitalWrite(RightMotorBackward, HIGH);
-    delay(1000);
-    digitalWrite(RightMotorBackward, LOW);
-    delay(500);
-
-    Serial.println("Motor test complete. Restarting...");
-    delay(2000);
+    MoveBackward(1000);
+    delay(400);
+    TurnLeft(1000);
+    delay(400);
+    TurnRight(1000);
+    delay(400);
 }
 
 void MoveForward(int duration)
@@ -77,4 +57,42 @@ void MoveForward(int duration)
     // Stop both motors
     digitalWrite(LeftMotorForward, LOW);
     digitalWrite(RightMotorForward, LOW);
+}
+
+void MoveBackward(int duration)
+{
+    // Move both motors forward
+    digitalWrite(LeftMotorBackward, HIGH);
+    digitalWrite(RightMotorBackward, HIGH);
+
+    // Wait for the specified duration
+    delay(duration);
+
+    // Stop both motors
+    digitalWrite(LeftMotorBackward, LOW);
+    digitalWrite(RightMotorBackward, LOW);
+}
+
+void TurnLeft(int duration)
+{
+    // Move right motor forward
+    digitalWrite(RightMotorForward, HIGH);
+
+    // Wait for the specified duration
+    delay(duration);
+
+    // Stop motor
+    digitalWrite(RightMotorForward, LOW);
+}
+
+void TurnRight(int duration)
+{
+    // Move right motor forward
+    digitalWrite(LeftMotorForward, HIGH);
+
+    // Wait for the specified duration
+    delay(duration);
+
+    // Stop motor
+    digitalWrite(LeftMotorForward, LOW);
 }

@@ -34,7 +34,8 @@ void setup() {
   Serial.println("Starting motor test...");
 }
 
-void loop() {
+void loop() 
+{
   Serial.println("Left Motor A Forward");
   digitalWrite(LeftMotorForward, HIGH);
   delay(1000);
