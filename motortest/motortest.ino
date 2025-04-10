@@ -1,4 +1,4 @@
-// Motor Test Code for Single L298N Driver (Motor A Only)
+// Motor Test Code for Single L298N Driver (Motor A and B)
 
 // Motor A (Left and Right)
 const int LeftMotorForward = 7;
@@ -48,13 +48,13 @@ void loop()
   digitalWrite(LeftMotorBackward, LOW);
   delay(500);
 
-  Serial.println("Right Motor A Forward");
+  Serial.println("Right Motor B Forward");
   digitalWrite(RightMotorForward, HIGH);
   delay(1000);
   digitalWrite(RightMotorForward, LOW);
   delay(500);
 
-  Serial.println("Right Motor A Backward");
+  Serial.println("Right Motor B Backward");
   digitalWrite(RightMotorBackward, HIGH);
   delay(1000);
   digitalWrite(RightMotorBackward, LOW);
