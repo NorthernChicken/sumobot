@@ -1,9 +1,8 @@
 // Built from Motor Test Code for Single L298N Driver (Motor A Only) by Prahas D: https://github.com/Raptorly1
 
-#include <Servo.h>   //Servo motor library. This is standard library
-#include <NewPing.h> //Ultrasonic sensor function library. You must install this library
+#include <Servo.h>
 
-// Motor A (Left and Right)
+// Motor A and B (Left and Right)
 const int LeftMotorForward = 7;
 const int LeftMotorBackward = 6;
 const int RightMotorForward = 4;
@@ -18,7 +17,7 @@ void setup()
     // Initialize serial communication first
     Serial.begin(9600);
 
-    // Initialize motor control pins for Motor A
+    // Initialize motor control pins for Motor A and B
     pinMode(LeftMotorForward, OUTPUT);
     pinMode(LeftMotorBackward, OUTPUT);
     pinMode(RightMotorForward, OUTPUT);
@@ -32,17 +31,22 @@ void setup()
     pinMode(ENB, OUTPUT);
     digitalWrite(ENB, HIGH);
 
-    Serial.println("Starting motor test...");
-}
-
-void loop()
-{
+    // Begin Sequence
+    delay(5000);
+    TurnRight(200);
+    MoveBackward(100);
+    TurnLeft(400);
     MoveBackward(1000);
-    delay(400);
-    TurnLeft(1000);
-    delay(400);
-    TurnRight(1000);
-    delay(400);
+    while (true)
+    {
+      TurnRight(1000);
+      delay(500);
+      TurnLeft(1000);
+      delay(500);
+      MoveBackward(100);
+      delay(100);
+    }
+
 }
 
 void MoveForward(int duration)
@@ -61,7 +65,7 @@ void MoveForward(int duration)
 
 void MoveBackward(int duration)
 {
-    // Move both motors forward
+    // Move both motors backward
     analogWrite(LeftMotorBackward, 255);
     analogWrite(RightMotorBackward, 255);
 
@@ -76,23 +80,23 @@ void MoveBackward(int duration)
 void TurnLeft(int duration)
 {
     // Move right motor forward
-    digitalWrite(RightMotorForward, HIGH);
+    digitalWrite(RightMotorBackward, HIGH);
 
     // Wait for the specified duration
     delay(duration);
 
     // Stop motor
-    digitalWrite(RightMotorForward, LOW);
+    digitalWrite(RightMotorBackward, LOW);
 }
 
 void TurnRight(int duration)
 {
-    // Move right motor forward
-    digitalWrite(LeftMotorForward, HIGH);
+    // Move left motor forward
+    digitalWrite(LeftMotorBackward, HIGH);
 
     // Wait for the specified duration
     delay(duration);
 
     // Stop motor
-    digitalWrite(LeftMotorForward, LOW);
+    digitalWrite(LeftMotorBackward, LOW);
 }
